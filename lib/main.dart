@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:smig_web/views/login_page.dart';
+import 'package:smig_web/views/signup_page.dart';
 import 'views/home_page.dart';
 
 void main() {
@@ -10,7 +12,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'SMIG App',
-      home: HomePage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => HomePage(),
+        '/login': (context) => LoginPage(),
+        '/signup': (context) => SignUpPage(),
+      },
     );
   }
 }
+
