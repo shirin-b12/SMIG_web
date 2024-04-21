@@ -29,7 +29,13 @@ class CustomTopAppBar extends StatefulWidget implements PreferredSizeWidget {
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this);
+    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 1)); // Exemple de durée
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override

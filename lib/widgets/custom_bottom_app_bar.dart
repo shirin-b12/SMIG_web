@@ -5,8 +5,19 @@ import '../services/auth_service.dart';
 import '../views/page/login_page.dart';
 
 class CustomBottomAppBar extends StatefulWidget implements PreferredSizeWidget {
+  const CustomBottomAppBar({super.key});
 
-  const CustomBottomAppBar({Key? key}) : super(key: key);
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    throw UnimplementedError();
+  }
+
+  @override
+  // TODO: implement preferredSize
+  Size get preferredSize => throw UnimplementedError();
+
+  /*const CustomBottomAppBar({Key? key}) : super(key: key);
 
   @override
   _CustomBottomAppBarState createState() => _CustomBottomAppBarState();
@@ -149,5 +160,5 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> with TickerProv
         ),
       ),
     );
-  }
+  }*/
 }

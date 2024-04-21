@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import '../../services/auth_service.dart';
 import 'login_page.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+
+
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -13,6 +17,8 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController surnameController = TextEditingController();
   bool _passwordVisible = false;
+  XFile? _image;
+
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +43,7 @@ class _SignUpPageState extends State<SignUpPage> {
               Container(
                 width: 120,
                 height: 120,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: Color(0xFF03989E),
                   shape: BoxShape.circle,
                 ),
@@ -45,17 +51,24 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    Icon(
+                    _image == null
+                        ? Icon(
                       Icons.photo,
                       size: 35.0,
                       color: Colors.white,
+                    )
+                        : ClipOval(
+                      child: Image.file(
+                        File(_image!.path),
+                        width: 120,
+                        height: 120,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                     Align(
                       alignment: Alignment.bottomRight,
                       child: GestureDetector(
-                        onTap: ()=>{
-                          print("kljkljkl")
-                        },
+                        onTap: getImage,
                         child: Container(
                           width: 50,
                           height: 50,
@@ -249,4 +262,13 @@ class _SignUpPageState extends State<SignUpPage> {
       child: Text(buttonText, style: TextStyle(fontSize: 16)),
     );
   }
+
+  Future getImage() async {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _image = image;
+    });
+  }
+
 }
