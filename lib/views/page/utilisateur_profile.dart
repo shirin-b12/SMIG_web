@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smig_app/views/page/utilisateur_modification_page.dart';
+import 'package:smig_web/views/page/utilisateur_modification_page.dart';
 import '../../models/relation.dart';
 import '../../models/tiny_ressource.dart';
 import '../../models/utilisateur.dart';

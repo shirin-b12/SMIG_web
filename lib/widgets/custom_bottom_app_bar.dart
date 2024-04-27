@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:smig_app/services/api_service.dart';
-import 'package:smig_app/views/page/home_page.dart';
-import 'package:smig_app/views/page/ressource_list_page.dart';
-import 'package:smig_app/views/page/ressource_creation_page.dart';
-import 'package:smig_app/views/page/ressource_modification_page.dart';
-import 'package:smig_app/views/page/ressource_page.dart';
-import 'package:smig_app/views/page/utilisateur_modification_page.dart';
-import 'package:smig_app/views/page/utilisateur_profile.dart';
-import 'package:smig_app/views/page/search_page.dart';
-import 'package:smig_app/views/screen/signup_or_login/signup_or_login.dart';
+import 'package:smig_web/services/api_service.dart';
+import 'package:smig_web/views/page/home_page.dart';
+import 'package:smig_web/views/page/ressource_list_page.dart';
+import 'package:smig_web/views/page/ressource_creation_page.dart';
+import 'package:smig_web/views/page/ressource_modification_page.dart';
+import 'package:smig_web/views/page/ressource_page.dart';
+import 'package:smig_web/views/page/utilisateur_modification_page.dart';
+import 'package:smig_web/views/page/utilisateur_profile.dart';
+import 'package:smig_web/views/page/search_page.dart';
+import 'package:smig_web/views/screen/signup_or_login/signup_or_login.dart';
 
 import '../models/utilisateur.dart';
 import '../services/auth_service.dart';

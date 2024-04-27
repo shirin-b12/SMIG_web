@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:smig_app/models/ressource.dart';
-import 'package:smig_app/services/api_service.dart';
-import 'package:smig_app/views/page/ressource_page.dart';
+import 'package:smig_web/models/ressource.dart';
+import 'package:smig_web/services/api_service.dart';
+import 'package:smig_web/views/page/ressource_page.dart';
 import '../../../widgets/custom_bottom_app_bar.dart';
 import '../../../widgets/custom_top_app_bar.dart';
 

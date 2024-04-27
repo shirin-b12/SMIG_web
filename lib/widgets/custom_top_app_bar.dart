@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
-import 'package:smig_app/services/auth_service.dart';
-import 'package:smig_app/views/page/favoris_page.dart';
-import 'package:smig_app/views/screen/signup_or_login/signup_or_login.dart';
+import 'package:smig_web/services/auth_service.dart';
+import 'package:smig_web/views/page/favoris_page.dart';
+import 'package:smig_web/views/screen/signup_or_login/signup_or_login.dart';
 
 class CustomTopAppBar extends StatefulWidget implements PreferredSizeWidget {
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:smig_app/models/categorie.dart';
-import 'package:smig_app/models/ressource.dart';
-import 'package:smig_app/models/types_relation.dart';
-import 'package:smig_app/services/api_service.dart';
-import 'package:smig_app/models/utilisateur.dart';
-import 'package:smig_app/models/type.dart';
+import 'package:smig_web/models/categorie.dart';
+import 'package:smig_web/models/ressource.dart';
+import 'package:smig_web/models/types_relation.dart';
+import 'package:smig_web/services/api_service.dart';
+import 'package:smig_web/models/utilisateur.dart';
+import 'package:smig_web/models/type.dart';
 
 import '../../models/tag.dart';
 import '../../services/auth_service.dart';

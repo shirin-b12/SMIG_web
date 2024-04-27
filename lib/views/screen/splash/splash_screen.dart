@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:smig_app/views/page/ressource_creation_page.dart';
-import 'package:smig_app/views/page/utilisateur_modification_page.dart';
-import 'package:smig_app/views/screen/signup_or_login/signup_or_login.dart';
+import 'package:smig_web/views/page/ressource_creation_page.dart';
+import 'package:smig_web/views/page/utilisateur_modification_page.dart';
+import 'package:smig_web/views/screen/signup_or_login/signup_or_login.dart';
 import 'dart:math' as math;
 import '../../../services/api_service.dart';
 import '../../../services/auth_service.dart';

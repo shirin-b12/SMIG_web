@@ -1,6 +1,6 @@
-import 'package:smig_app/models/ressource.dart';
-import 'package:smig_app/models/types_relation.dart';
-import 'package:smig_app/models/utilisateur.dart';
+import 'package:smig_web/models/ressource.dart';
+import 'package:smig_web/models/types_relation.dart';
+import 'package:smig_web/models/utilisateur.dart';
 
 class Relation {
   final int id;

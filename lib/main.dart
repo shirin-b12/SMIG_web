@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:smig_app/views/page/login_page.dart';
-import 'package:smig_app/views/page/ressource_creation_page.dart';
-import 'package:smig_app/views/page/ressource_list_page.dart';
-import 'package:smig_app/views/page/signup_page.dart';
-import 'package:smig_app/views/screen/splash/splash_screen.dart';
+import 'package:smig_web/views/page/login_page.dart';
+import 'package:smig_web/views/page/ressource_creation_page.dart';
+import 'package:smig_web/views/page/ressource_list_page.dart';
+import 'package:smig_web/views/page/signup_page.dart';
+import 'package:smig_web/views/screen/splash/splash_screen.dart';
 import 'views/page/home_page.dart';
 import 'views/page/commentaire_page.dart';
 import 'views/page/utilisateur_profile.dart';

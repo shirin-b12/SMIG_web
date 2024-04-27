@@ -1,4 +1,4 @@
-import 'package:smig_app/models/utilisateur.dart';
+import 'package:smig_web/models/utilisateur.dart';
 
 class Commentaire {
   final int id;

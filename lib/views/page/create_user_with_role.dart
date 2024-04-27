@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:smig_app/services/api_service.dart';
-import 'package:smig_app/views/page/home_page.dart';
+import 'package:smig_web/services/api_service.dart';
+import 'package:smig_web/views/page/home_page.dart';
 import '../../../models/role.dart';
 import '../../../widgets/custom_bottom_app_bar.dart';
 import '../../../widgets/custom_top_app_bar.dart';

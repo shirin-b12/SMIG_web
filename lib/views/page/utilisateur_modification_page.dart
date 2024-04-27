@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:smig_app/services/api_service.dart';
-import 'package:smig_app/models/utilisateur.dart';
-import 'package:smig_app/views/page/utilisateur_profile.dart';
+import 'package:smig_web/services/api_service.dart';
+import 'package:smig_web/models/utilisateur.dart';
+import 'package:smig_web/views/page/utilisateur_profile.dart';
 import '../../widgets/custom_bottom_app_bar.dart';
 import '../../widgets/custom_top_app_bar.dart';
 

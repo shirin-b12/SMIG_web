@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:smig_app/models/categorie.dart';
-import 'package:smig_app/models/tag.dart';
-import 'package:smig_app/models/type.dart';
-import 'package:smig_app/services/api_service.dart';
-import 'package:smig_app/views/page/home_page.dart';
+import 'package:smig_web/models/categorie.dart';
+import 'package:smig_web/models/tag.dart';
+import 'package:smig_web/models/type.dart';
+import 'package:smig_web/services/api_service.dart';
+import 'package:smig_web/views/page/home_page.dart';
 import '../../../models/ressource.dart';
 import '../../../widgets/custom_bottom_app_bar.dart';
 import '../../../widgets/custom_top_app_bar.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:smig_app/services/auth_service.dart';
-import 'package:smig_app/views/page/ressource_modification_page.dart';
+import 'package:smig_web/services/auth_service.dart';
+import 'package:smig_web/views/page/ressource_modification_page.dart';
 import '../../../models/commentaire.dart';
 import '../../../models/ressource.dart';
 import '../../../services/api_service.dart';

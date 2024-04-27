@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:smig_app/models/categorie.dart';
-import 'package:smig_app/models/image.dart';
-import 'package:smig_app/models/tag.dart';
-import 'package:smig_app/models/type.dart';
-import 'package:smig_app/models/utilisateur.dart';
+import 'package:smig_web/models/categorie.dart';
+import 'package:smig_web/models/image.dart';
+import 'package:smig_web/models/tag.dart';
+import 'package:smig_web/models/type.dart';
+import 'package:smig_web/models/utilisateur.dart';
 import 'dart:typed_data';
 
 class Ressource {
