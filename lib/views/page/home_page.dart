@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../services/api_service.dart';
-import '../widgets/utilisateur_card.dart';
+import '../../services/api_service.dart';
+import '../../widgets/utilisateur_card.dart';
 
 class HomePage extends StatelessWidget {
   final ApiService api = ApiService();
