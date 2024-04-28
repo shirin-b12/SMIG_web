@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:smig_web/services/api_service.dart';
+import 'package:smig_web/views/page/ressource_list_page.dart';
 import '../../../services/auth_service.dart';
+import '../../../widgets/custom_bottom_app_bar.dart';
+import '../../../widgets/custom_top_app_bar.dart';
 import '../page/login_page.dart';
 
-class SignUpPage extends StatefulWidget {
+class CatCreationPage extends StatefulWidget {
   @override
-  _SignUpPageState createState() => _SignUpPageState();
+  _CatCreationPageState createState() => _CatCreationPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController surnameController = TextEditingController();
-  bool _passwordVisible = false;
+class _CatCreationPageState extends State<CatCreationPage> {
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+  /*final Image imageController = */
+  final TextEditingController visibiliteController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: CustomTopAppBar(),
+      bottomNavigationBar: CustomBottomAppBar(),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(8.0),
         child: Container(
@@ -33,7 +39,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                 ),
               ),
-              SizedBox(height: 100),
+              const SizedBox(height: 50),
               Container(
                 width: 120,
                 height: 120,
@@ -76,63 +82,39 @@ class _SignUpPageState extends State<SignUpPage> {
                   ],
                 ),
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 16),
               _buildTextFieldWithShadow(
-                controller: nameController,
-                icon: Icons.account_circle,
+                controller: titleController,
+                icon: Icons.abc_rounded,
                 label: 'Nom',
-              ),
-              const SizedBox(height: 16),
-              _buildTextFieldWithShadow(
-                controller: surnameController,
-                icon: Icons.account_circle,
-                label: 'Prénom',
-              ),
-              const SizedBox(height: 16),
-              _buildTextFieldWithShadow(
-                controller: emailController,
-                icon: Icons.email,
-                label: 'Email',
-              ),
-              const SizedBox(height: 16),
-              _buildTextFieldWithShadow(
-                controller: passwordController,
-                icon: Icons.lock,
-                label: 'Mot de passe',
-                isPassword: true,
               ),
               const SizedBox(height: 50),
               _buildRoundedButton(
                 context: context,
                 buttonColor: Color(0xFF000091),
                 textColor: Colors.white,
-                buttonText: 'Créer un compte',
+                buttonText: 'Créer',
                 onPressed: () async {
-                  if (nameController.text.trim().isEmpty ||
-                      surnameController.text.trim().isEmpty ||
-                      emailController.text.trim().isEmpty ||
-                      passwordController.text.trim().isEmpty) {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("Tous les champs sont obligatoires"),
+                  String title = titleController.text.trim();
+                  if (title.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Le nom de la catégorie est obligatoire"),
                         backgroundColor: Color(0xFFFFBD59),
                         duration: Duration(seconds: 2),
                         shape: StadiumBorder(),
-                        behavior: SnackBarBehavior.floating));
+                        behavior: SnackBarBehavior.floating,
+                      ),
+                    );
                     return;
                   }
                   try {
-                    final utilisateur = await AuthService().createAccount(
-                      nameController.text.trim(),
-                      surnameController.text.trim(),
-                      emailController.text.trim(),
-                      passwordController.text.trim(),
+                    final ressource = await ApiService().createType(
+                      titleController.text.trim(),
                     );
-                    if (utilisateur) {
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) => LoginPage()));
-                    } else {
+                    if (ressource == null) {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text("Échec lors de la création de compte"),
+                          content: Text("Échec lors de la création ee"),
                           backgroundColor: Color(0xFFFFBD59),
                           duration: Duration(seconds: 2),
                           shape: StadiumBorder(),
@@ -140,7 +122,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     }
                   } catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("Échec lors de la création de compte"),
+                        content: Text("Échec lors de la création"),
                         backgroundColor: Color(0xFFFFBD59),
                         duration: Duration(seconds: 2),
                         shape: StadiumBorder(),
@@ -175,7 +157,7 @@ class _SignUpPageState extends State<SignUpPage> {
     Color borderColor = Color(0xFF03989E);
 
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 50.0),
+      margin: EdgeInsets.symmetric(horizontal: 120.0),
       child: TextField(
         controller: controller,
         cursorColor: cursorColor,
@@ -203,21 +185,7 @@ class _SignUpPageState extends State<SignUpPage> {
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(color: borderColor.withOpacity(0.5)),
           ),
-          suffixIcon: isPassword
-              ? IconButton(
-                  icon: Icon(
-                    _passwordVisible ? Icons.visibility : Icons.visibility_off,
-                    color: labelColor,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _passwordVisible = !_passwordVisible;
-                    });
-                  },
-                )
-              : null,
         ),
-        obscureText: isPassword && !_passwordVisible,
       ),
     );
   }

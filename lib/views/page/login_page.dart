@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../services/auth_service.dart';
+import '../../../services/auth_service.dart';
 import '../screen/signup_or_login/signup_or_login.dart';
-import 'home_page.dart';
+import '../screen/transition_page.dart';
+import '../page/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -28,7 +29,8 @@ class _LoginPageState extends State<LoginPage> {
                 if (isLoggedIn) {
                   Navigator.pop(context);
                 } else {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => SignUpOrLogin()));
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => SignUpOrLogin()));
                 }
               },
             ),
@@ -63,18 +65,18 @@ class _LoginPageState extends State<LoginPage> {
                     textColor: Colors.white,
                     buttonText: 'Connexion',
                     onPressed: () async {
-                      final bool isLoggedIn = await AuthService().login(emailController.text, passwordController.text);
+                      final bool isLoggedIn = await AuthService()
+                          .login(emailController.text, passwordController.text);
                       if (isLoggedIn) {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) => HomePage()));
                       } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                                content: Text("Échec de la connexion"),
-                                backgroundColor: Color(0xFFFFBD59),
-                                duration: const Duration(seconds: 2),
-                                shape: StadiumBorder(),
-                                behavior: SnackBarBehavior.floating)
-                        );
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("Échec de la connexion"),
+                            backgroundColor: Color(0xFFFFBD59),
+                            duration: const Duration(seconds: 2),
+                            shape: StadiumBorder(),
+                            behavior: SnackBarBehavior.floating));
                       }
                     },
                   ),
@@ -86,8 +88,8 @@ class _LoginPageState extends State<LoginPage> {
             flex: 1,
             child: Align(
               alignment: Alignment.bottomCenter,
-              child: Image.asset('assets/gouv/marianne.png', width: 40, height: 40),
-
+              child: Image.asset('assets/gouv/marianne.png',
+                  width: 40, height: 40),
             ),
           ),
         ],
@@ -106,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
     Color borderColor = Color(0xFF03989E);
 
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 0),
+      margin: EdgeInsets.symmetric(horizontal: 50.0),
       child: TextField(
         controller: controller,
         cursorColor: cursorColor,
@@ -136,16 +138,16 @@ class _LoginPageState extends State<LoginPage> {
           ),
           suffixIcon: isPassword
               ? IconButton(
-            icon: Icon(
-              _passwordVisible ? Icons.visibility : Icons.visibility_off,
-              color: labelColor,
-            ),
-            onPressed: () {
-              setState(() {
-                _passwordVisible = !_passwordVisible;
-              });
-            },
-          )
+                  icon: Icon(
+                    _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                    color: labelColor,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _passwordVisible = !_passwordVisible;
+                    });
+                  },
+                )
               : null,
         ),
         obscureText: isPassword && !_passwordVisible,
@@ -162,8 +164,8 @@ class _LoginPageState extends State<LoginPage> {
   }) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: buttonColor,
-        onPrimary: textColor,
+        foregroundColor: textColor,
+        backgroundColor: buttonColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
