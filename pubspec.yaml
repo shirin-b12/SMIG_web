@@ -46,6 +46,8 @@ dependencies:
   jwt_decode: ^0.3.0
   expandable_text: ^2.3.0
   flutter_image_compress: ^2.2.0
+  url_launcher: 6.2.4
+  image_picker: ^0.8.5+3
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -80,6 +82,7 @@ flutter:
     - assets/gouv/marianne.png
     - assets/gouv/ministere.png
     - assets/smig/logo.png
+    - assets/smig/logo_carre.png
     - assets/appBar/add.json
     - assets/appBar/fav.json
     - assets/appBar/home.json
@@ -88,10 +91,6 @@ flutter:
     - assets/appBar/search.json
     - assets/appBar/RE.svg
     - assets/appBar/RE.json
-    - assets/appBar/home_green.json
-    - assets/appBar/user_green.json
-    - assets/appBar/stats_green.json
-    - assets/appBar/search_green.json
     - assets/appBar/add_green.json
     - assets/appBar/RE_green.json
     - assets/appBar/fav_green.json

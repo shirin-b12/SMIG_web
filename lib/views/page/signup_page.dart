@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../../services/auth_service.dart';
-import '../page/login_page.dart';
+import '../../services/auth_service.dart';
+import 'login_page.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+
+
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -13,6 +17,8 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController surnameController = TextEditingController();
   bool _passwordVisible = false;
+  XFile? _image;
+
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +43,7 @@ class _SignUpPageState extends State<SignUpPage> {
               Container(
                 width: 120,
                 height: 120,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: Color(0xFF03989E),
                   shape: BoxShape.circle,
                 ),
@@ -45,15 +51,24 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: Stack(
                   alignment: Alignment.center,
                   children: [
-                    Icon(
+                    _image == null
+                        ? Icon(
                       Icons.photo,
                       size: 35.0,
                       color: Colors.white,
+                    )
+                        : ClipOval(
+                      child: Image.file(
+                        File(_image!.path),
+                        width: 120,
+                        height: 120,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                     Align(
                       alignment: Alignment.bottomRight,
                       child: GestureDetector(
-                        onTap: () => {print("kljkljkl")},
+                        onTap: getImage,
                         child: Container(
                           width: 50,
                           height: 50,
@@ -108,16 +123,16 @@ class _SignUpPageState extends State<SignUpPage> {
                 textColor: Colors.white,
                 buttonText: 'Créer un compte',
                 onPressed: () async {
-                  if (nameController.text.trim().isEmpty ||
-                      surnameController.text.trim().isEmpty ||
-                      emailController.text.trim().isEmpty ||
-                      passwordController.text.trim().isEmpty) {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("Tous les champs sont obligatoires"),
-                        backgroundColor: Color(0xFFFFBD59),
-                        duration: Duration(seconds: 2),
-                        shape: StadiumBorder(),
-                        behavior: SnackBarBehavior.floating));
+                  if (nameController.text.trim().isEmpty || surnameController.text.trim().isEmpty || emailController.text.trim().isEmpty || passwordController.text.trim().isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text("Tous les champs sont obligatoires"),
+                            backgroundColor: Color(0xFFFFBD59),
+                            duration: Duration(seconds: 2),
+                            shape: StadiumBorder(),
+                            behavior: SnackBarBehavior.floating
+                        )
+                    );
                     return;
                   }
                   try {
@@ -128,23 +143,28 @@ class _SignUpPageState extends State<SignUpPage> {
                       passwordController.text.trim(),
                     );
                     if (utilisateur) {
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) => LoginPage()));
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()));
                     } else {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text("Échec lors de la création de compte"),
-                          backgroundColor: Color(0xFFFFBD59),
-                          duration: Duration(seconds: 2),
-                          shape: StadiumBorder(),
-                          behavior: SnackBarBehavior.floating));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text("Échec lors de la création de compte"),
+                              backgroundColor: Color(0xFFFFBD59),
+                              duration: Duration(seconds: 2),
+                              shape: StadiumBorder(),
+                              behavior: SnackBarBehavior.floating
+                          )
+                      );
                     }
                   } catch (e) {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("Échec lors de la création de compte"),
-                        backgroundColor: Color(0xFFFFBD59),
-                        duration: Duration(seconds: 2),
-                        shape: StadiumBorder(),
-                        behavior: SnackBarBehavior.floating));
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text("Échec lors de la création de compte"),
+                            backgroundColor: Color(0xFFFFBD59),
+                            duration: Duration(seconds: 2),
+                            shape: StadiumBorder(),
+                            behavior: SnackBarBehavior.floating
+                        )
+                    );
                   }
                 },
               ),
@@ -175,11 +195,11 @@ class _SignUpPageState extends State<SignUpPage> {
     Color borderColor = Color(0xFF03989E);
 
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 50.0),
+      margin: const EdgeInsets.symmetric(horizontal: 0),
       child: TextField(
         controller: controller,
         cursorColor: cursorColor,
-        style: TextStyle(color: Colors.black54),
+        style: const TextStyle(color: Colors.black54),
         decoration: InputDecoration(
           prefixIcon: Icon(icon, color: labelColor),
           labelText: label,
@@ -190,7 +210,7 @@ class _SignUpPageState extends State<SignUpPage> {
           floatingLabelBehavior: FloatingLabelBehavior.always,
           fillColor: Colors.white,
           filled: true,
-          contentPadding: EdgeInsets.only(top: 20.0),
+          contentPadding: const EdgeInsets.only(top: 20.0),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide.none,
@@ -205,16 +225,16 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
           suffixIcon: isPassword
               ? IconButton(
-                  icon: Icon(
-                    _passwordVisible ? Icons.visibility : Icons.visibility_off,
-                    color: labelColor,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _passwordVisible = !_passwordVisible;
-                    });
-                  },
-                )
+            icon: Icon(
+              _passwordVisible ? Icons.visibility : Icons.visibility_off,
+              color: labelColor,
+            ),
+            onPressed: () {
+              setState(() {
+                _passwordVisible = !_passwordVisible;
+              });
+            },
+          )
               : null,
         ),
         obscureText: isPassword && !_passwordVisible,
@@ -231,8 +251,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        foregroundColor: textColor,
-        backgroundColor: buttonColor,
+        foregroundColor: textColor, backgroundColor: buttonColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
         ),
@@ -242,4 +261,13 @@ class _SignUpPageState extends State<SignUpPage> {
       child: Text(buttonText, style: TextStyle(fontSize: 16)),
     );
   }
+
+  Future getImage() async {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _image = image;
+    });
+  }
+
 }
