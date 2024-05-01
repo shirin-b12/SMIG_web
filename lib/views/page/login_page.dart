@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           Flexible(
             flex: 3,
-            child: SingleChildScrollView(
+            child: Container(
               child: Column(
                 children: <Widget>[
                   const SizedBox(height: 100),
@@ -61,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                     label: 'Mot de passe',
                     isPassword: true,
                   ),
-                  const SizedBox(height: 80),
+                  const SizedBox(height: 25),
                   _buildRoundedButton(
                     context: context,
                     buttonColor: const Color(0xFF000091),
@@ -105,6 +105,7 @@ class _LoginPageState extends State<LoginPage> {
     required IconData icon,
     required String label,
     bool isPassword = false,
+
   }) {
     Color labelColor = Color(0xFF03989E);
     Color cursorColor = Color(0xFF03989E);
@@ -112,6 +113,7 @@ class _LoginPageState extends State<LoginPage> {
 
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 50.0),
+      width: MediaQuery.of(context).size.width / 2,
       child: TextField(
         controller: controller,
         cursorColor: cursorColor,
