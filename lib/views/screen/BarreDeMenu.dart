@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../page/utilisateur_profile.dart';
+
 class BarreDeMenu extends StatelessWidget {
 
   @override
@@ -11,16 +13,9 @@ class BarreDeMenu extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border(
           top: BorderSide(color: Colors.grey.shade400, width: 0.5),
+          bottom: BorderSide(color: Colors.grey.shade400, width: 0.5),
         ),
         color: Colors.white,
-        boxShadow: const <BoxShadow>[
-          BoxShadow(
-            color: Color(0xFFEEEEEE),
-            blurRadius: 5.0,
-            spreadRadius: -1.0,
-            offset: Offset(0.0, 4.0),
-          )
-        ],
       ),
       child: const Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -50,6 +45,8 @@ class _MenuItem extends StatefulWidget {
       padding: const EdgeInsets.symmetric(horizontal: 40.0),
       child: TextButton(
         onPressed: () {
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => UserProfile()));
+
           print('Clic sur $titre');
         },
         child: Text(
@@ -72,6 +69,8 @@ class _MenuItemState extends State<_MenuItem> {
       onExit: (event) => setState(() => isHovered = false),
       child: InkWell(
         onTap: () {
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => UserProfile()));
+
           print('Clic sur ${widget.titre}');
         },
         onHover: (hovering) {

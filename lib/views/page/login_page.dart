@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../services/auth_service.dart';
+import '../../widgets/custom_top_app_bar.dart';
 import '../screen/signup_or_login/signup_or_login.dart';
 import '../screen/transition_page.dart';
 import '../page/home_page.dart';
@@ -17,6 +18,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: CustomTopAppBar(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[

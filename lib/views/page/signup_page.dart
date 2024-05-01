@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../services/auth_service.dart';
+import '../../widgets/custom_top_app_bar.dart';
 import 'login_page.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -23,6 +24,8 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: CustomTopAppBar(),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(8.0),
         child: Container(

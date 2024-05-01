@@ -17,6 +17,7 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
+  final ApiService api = ApiService();
   Utilisateur? user;
   List<TinyRessource>? resources;
   List<Utilisateur>? allUsers;
@@ -91,7 +92,6 @@ class _UserProfileState extends State<UserProfile> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const CustomTopAppBar(),
-      bottomNavigationBar: const CustomBottomAppBar(),
       body: SafeArea(
         child: role != null && role != "Utilisateur" && role != 'Anonyme'
             ? _buildUserList()
@@ -257,6 +257,20 @@ class _UserProfileState extends State<UserProfile> {
         Expanded(
           child: _buildResourcesList(),
         ),
+        Expanded(child: FutureBuilder(
+          future: api.fetchUtilisateurs(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (context, index) => UtilisateurCard(utilisateur: snapshot.data[index]),
+              );
+            } else if (snapshot.hasError) {
+              return Text("${snapshot.error}");
+            }
+            return CircularProgressIndicator();
+          },
+        ),),
       ],
     );
   }

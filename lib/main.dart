@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'SMIG App',
       initialRoute: '/',
       routes: {
-        '/': (context) => SplashScreen(),
+        '/': (context) => HomePage(),
         '/login': (context) => LoginPage(),
         '/signup': (context) => SignUpPage(),
         '/ressource_list': (context) => RessourceListPage(),

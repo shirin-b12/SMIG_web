@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smig_web/views/page/login_page.dart';
+import '../../../widgets/custom_top_app_bar.dart';
 import '../../page/signup_page.dart';
 import '../DashedCirclePainter.dart';
 
@@ -7,6 +8,8 @@ class SignUpOrLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: CustomTopAppBar(),
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height,
