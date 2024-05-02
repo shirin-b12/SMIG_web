@@ -29,7 +29,7 @@ class _SignUpPageState extends State<SignUpPage> {
       body: SingleChildScrollView(
         padding: EdgeInsets.all(8.0),
         child: Container(
-          height: MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.height-240,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -119,7 +119,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 label: 'Mot de passe',
                 isPassword: true,
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 25),
               _buildRoundedButton(
                 context: context,
                 buttonColor: Color(0xFF000091),
@@ -199,6 +199,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 0),
+      width: MediaQuery.of(context).size.width / 2,
       child: TextField(
         controller: controller,
         cursorColor: cursorColor,

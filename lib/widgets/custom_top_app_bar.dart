@@ -39,6 +39,7 @@ class _CustomTopAppBarState extends State<CustomTopAppBar> with TickerProviderSt
     bool isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
 
     return Container(
+      color: Colors.white,// Adding uniform margin
             child: Column(
               children: [
                 Expanded(

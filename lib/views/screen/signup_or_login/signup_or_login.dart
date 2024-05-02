@@ -12,7 +12,7 @@ class SignUpOrLogin extends StatelessWidget {
       appBar: CustomTopAppBar(),
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.height-270,
           child: Stack(
             children: [
               Align(
