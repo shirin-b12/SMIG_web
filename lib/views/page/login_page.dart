@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           Flexible(
             flex: 3,
-            child: SingleChildScrollView(
+            child: Container(
               child: Column(
                 children: <Widget>[
                   const SizedBox(height: 100),
