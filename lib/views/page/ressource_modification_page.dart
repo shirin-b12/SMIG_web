@@ -54,7 +54,6 @@ class _RessourceUpdatePageState extends State<RessourceUpdatePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomTopAppBar(),
-      bottomNavigationBar: CustomBottomAppBar(),
       body: SingleChildScrollView(
         child: Center(
           child: Container(

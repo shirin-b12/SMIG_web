@@ -4,15 +4,20 @@ import 'package:smig_web/views/page/ressource_modification_page.dart';
 import '../../../models/commentaire.dart';
 import '../../../models/ressource.dart';
 import '../../../services/api_service.dart';
-import '../../../widgets/custom_bottom_app_bar.dart';
 import '../../../widgets/custom_top_app_bar.dart';
 import '../../../widgets/ressource_card.dart';
 
-class RessourcePage extends StatelessWidget {
-  final ApiService api = ApiService();
+class RessourcePage extends StatefulWidget {
   final int resourceId;
 
   RessourcePage({required this.resourceId});
+
+  @override
+  _RessourcePageState createState() => _RessourcePageState();
+}
+class _RessourcePageState extends State<RessourcePage> {
+
+  final ApiService api = ApiService();
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +28,6 @@ class RessourcePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomTopAppBar(),
-      bottomNavigationBar: CustomBottomAppBar(),
       floatingActionButton: FloatingActionButton(
         backgroundColor: primaryColor, // Use primary color here
         onPressed: () {
@@ -55,8 +59,10 @@ class RessourcePage extends StatelessWidget {
                       child: Text('Envoyer'),
                       onPressed: () async {
                         int userId = await AuthService().getCurrentUser();
-                        api.createComment(commentController.text, userId, resourceId, 0);
-                        api.fetchComments(resourceId);
+                        api.createComment(commentController.text, userId, widget.resourceId, 0);
+                        api.fetchComments(widget.resourceId);
+                        Navigator.pop(context);
+                        setState(() {});
                       },
                     ),
                   ],
@@ -71,7 +77,7 @@ class RessourcePage extends StatelessWidget {
         children: [
           Expanded(
             child: FutureBuilder<Ressource>(
-              future: api.getRessource(resourceId),
+              future: api.getRessource(widget.resourceId),
               builder: (context, snapshotRessource) {
                 if (snapshotRessource.connectionState == ConnectionState.done) {
                   if (snapshotRessource.hasData) {
@@ -81,11 +87,11 @@ class RessourcePage extends StatelessWidget {
                         IconButton(
                           icon: Icon(Icons.edit, color: Color(0xFF03989E)),
                           onPressed: () {
-                            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => RessourceUpdatePage(ressourceId: resourceId,)));
+                            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => RessourceUpdatePage(ressourceId: widget.resourceId,)));
                           },
                         ),
                         FutureBuilder<List<Commentaire>>(
-                          future: api.fetchComments(resourceId),
+                          future: api.fetchComments(widget.resourceId),
                           builder: (context, snapshotComments) {
                             if (snapshotComments.connectionState == ConnectionState.done) {
                               if (snapshotComments.hasData) {
@@ -99,7 +105,7 @@ class RessourcePage extends StatelessWidget {
                                         Text(comment.commentaire),
                                       ],
                                     ),
-                                    subtitle: Text("Posted on: ${comment.dateDeCreation}",
+                                    subtitle: Text("Poste le : ${comment.dateDeCreation}",
                                         style: TextStyle(fontSize: 10)),
                                   )).toList(),
                                 );

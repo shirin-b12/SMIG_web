@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../page/ressource_list_page.dart';
 import '../page/utilisateur_profile.dart';
 
 class BarreDeMenu extends StatelessWidget {
@@ -69,7 +70,7 @@ class _MenuItemState extends State<_MenuItem> {
       onExit: (event) => setState(() => isHovered = false),
       child: InkWell(
         onTap: () {
-          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => UserProfile()));
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => RessourceListPage()));
 
           print('Clic sur ${widget.titre}');
         },
