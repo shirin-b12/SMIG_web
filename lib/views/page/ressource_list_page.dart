@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:smig_web/models/ressource.dart';
 import 'package:smig_web/services/api_service.dart';
+import 'package:smig_web/services/auth_service.dart';
 import 'package:smig_web/views/page/ressource_page.dart';
+import 'package:smig_web/views/page/login_page.dart';
 import 'package:smig_web/widgets/custom_top_app_bar.dart';
 import 'package:smig_web/widgets/ressource_card.dart';
 
@@ -9,6 +11,7 @@ import '../screen/transition_page.dart';
 
 class RessourceListPage extends StatelessWidget {
   final ApiService api = ApiService();
+
 
   RessourceListPage({Key? key}) : super(key: key);
 
@@ -45,26 +48,32 @@ class RessourceListPage extends StatelessWidget {
                     return Center(child: CircularProgressIndicator());
                   } else if (snapshot.hasError) {
                     return Text("${snapshot.error}");
-                  } else if (snapshot.hasData) {
-                    return ListView.builder(
-                      itemCount: snapshot.data.length,
-                      itemBuilder: (context, index) {
-                        Ressource ressource = snapshot.data[index];
-                        return LayoutBuilder(
-                          builder: (BuildContext context, BoxConstraints constraints) {
-
-                            return InkWell(
-                              onTap: () {
+                  } else if (snapshot.hasData) {return ListView.builder(
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (context, index) {
+                      Ressource ressource = snapshot.data[index];
+                      return LayoutBuilder(
+                        builder: (BuildContext context, BoxConstraints constraints) {
+                          return InkWell(
+                            onTap: () async {
+                              // Check if the user is logged in
+                              int? userId = await AuthService().getCurrentUser();
+                              if (userId != 0) {
                                 Navigator.of(context).pushReplacement(CustomMaterialPageRoute(
                                   builder: (context) => RessourcePage(resourceId: ressource.id),
                                 ));
-                              },
-                                child: RessourceCard(ressource: ressource),
-                            );
-                          },
-                        );
-                      },
-                    );
+                              } else {
+                                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                                  builder: (context) => LoginPage(),
+                                ));
+                              }
+                            },
+                            child: RessourceCard(ressource: ressource),
+                          );
+                        },
+                      );
+                    },
+                  );
 
                   } else {
                     return Text("Aucune donnée disponible");
