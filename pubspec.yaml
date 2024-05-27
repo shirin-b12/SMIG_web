@@ -45,6 +45,7 @@ dependencies:
   jwt_decode: ^0.3.0
   expandable_text: ^2.3.0
   flutter_image_compress: ^2.2.0
+  fl_chart: ^0.67.0
 
 
   # The following adds the Cupertino Icons font to your application.

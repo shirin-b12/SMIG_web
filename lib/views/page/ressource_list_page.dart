@@ -64,7 +64,7 @@ class RessourceListPage extends StatelessWidget {
                                 ));
                               } else {
                                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                                  builder: (context) => LoginPage(),
+                                  builder: (context) =>  RessourcePage(resourceId: ressource.id),
                                 ));
                               }
                             },
